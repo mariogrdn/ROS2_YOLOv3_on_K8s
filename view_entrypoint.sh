@@ -12,7 +12,7 @@ fi
 sed -i "s/__DISCOVERY_SERVER_IP__/${DISCOVERY_SERVER_IP}/" ${FASTRTPS_DEFAULT_PROFILES_FILE}
 
 # Source the ROS2 configuration file
-. /opt/ros/image_pipeline/install/setup.bash
+. ./install/setup.bash
 
 # Run the image publisher, replacing the current process to get signals
 exec ros2 run image_view image_view image:=/darknet_ros/detection_image

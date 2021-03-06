@@ -27,4 +27,9 @@ make \
 g++ \
 && pip3 install -U rosdep && rosdep init && rosdep fix-permissions && rosdep update --rosdistro foxy && rosdep install --rosdistro foxy -y --from-path . \
 && . /opt/ros/foxy/setup.sh && colcon build \
-&& . ./install/setup.sh
+&& mkdir /fastRTPS_profile
+COPY fastRTPS_profile_ds_talker.xml /fastRTPS_profile
+COPY view_entrypoint.sh ./
+RUN chmod +x ./view_entrypoint.sh
+
+ENTRYPOINT ./view_entrypoint.sh

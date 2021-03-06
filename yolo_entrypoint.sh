@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # The environment variable indicating the path to the FastRTPS configuration
-export FASTRTPS_DEFAULT_PROFILES_FILE=/fastRTPS_profile/fastRTPS_profile_ds_talker.xml
+export FASTRTPS_DEFAULT_PROFILES_FILE=/fastRTPS_profile/fastRTPS_profile_ds_listener.xml
 
 # Grab the IP of the discovery server (if not provided) and fill the configuration
 if [ -z "${DISCOVERY_SERVER_IP}" ]; then
@@ -21,4 +21,4 @@ sed -i "s/__YOLO_SERVICE_IP__/${YOLO_SERVICE_IP}/" ${FASTRTPS_DEFAULT_PROFILES_F
 . /opt/ros/darknet_ros_tiny/install/setup.bash
 
 # Run the image publisher, replacing the current process to get signals
-exec ros2 launch darknet_ros darknet_ros.launch.py"
+exec ros2 launch darknet_ros darknet_ros.launch.py
