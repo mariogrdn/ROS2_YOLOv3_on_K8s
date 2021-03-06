@@ -1,0 +1,8 @@
+apiVersion: discovery.liqo.io/v1alpha1
+kind: ForeignCluster
+metadata:
+  name: remote-cluster
+  namespace: yolo  
+spec:
+  join: true
+  authUrl: https://192.168.1.10:31907

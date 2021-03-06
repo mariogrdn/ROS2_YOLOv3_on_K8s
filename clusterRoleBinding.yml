@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: service-patcher-global
+  namespace: yolo
+subjects:
+- kind: ServiceAccount
+  name: default # Name is case sensitive
+  namespace: yolo
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io

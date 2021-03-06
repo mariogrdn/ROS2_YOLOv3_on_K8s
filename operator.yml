@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator
+  namespace: yolo  
+  labels:
+    app: operator
+spec:
+  selector:
+    matchLabels:
+      app: operator
+  template:
+    metadata:
+      labels:
+        app: operator
+    spec:
+      hostNetwork: true
+      containers:
+      - name: proxycontainer
+        image: lachlanevenson/k8s-kubectl
+        imagePullPolicy: Always
+        command: ["kubectl","proxy","--port=8001"]
+        env:
+          - name: KUBECONFIG
+            value: /kube/config
+        volumeMounts: 
+            - 
+              mountPath: /kube/
+              name: kubeconfig
+      - name: operator
+        image: mariogrdn/network_operator
+        imagePullPolicy: Always
+        env:
+          - name: res_namespace
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+      nodeSelector:
+        name: local
+      volumes: 
+        - 
+          configMap:
+            name: config
+          name: kubeconfig            

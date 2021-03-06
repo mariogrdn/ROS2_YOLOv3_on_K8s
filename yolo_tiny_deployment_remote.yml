@@ -1,0 +1,45 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    name: yolo-tiny-remote
+  name: yolo-tiny-remote
+  namespace: yolo
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      name: yolo-tiny-remote
+  template: 
+    metadata: 
+      labels: 
+        name: yolo-tiny-remote
+    spec: 
+      containers: 
+        - 
+          name: yolo-tiny-remote
+          env: 
+            - 
+              name: ROS_DOMAIN_ID
+              value: "42"
+            -
+              name: DISCOVERY_SERVER_NAME
+              value: server-service.yolo
+            -
+              name: YOLO_SERVICE_NAME
+              value: yolo-service.yolo
+            -
+              name: YOLO_SERVICE_IP
+              value: 0.0.0.0
+          image: mariogrdn/minimal_yolo_tiny:single
+      restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: In
+                values:
+                - agent

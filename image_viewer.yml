@@ -1,0 +1,75 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    application: image-viewer
+  name: image-viewer
+  namespace: yolo
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      name: image-viewer
+  template: 
+    metadata: 
+      labels: 
+        name: image-viewer
+    spec: 
+      terminationGracePeriodSeconds: 5
+      containers: 
+        - 
+          name: image-viewer
+            - 
+              name: ROS_DOMAIN_ID
+              value: "42"
+            - 
+              name: DISCOVERY_SERVER_NAME
+              value: server-service.yolo  
+          image: mariogrdn/image_viewer
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 5901
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6901
+              scheme: HTTP
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: NotIn
+                values:
+                - agent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    application: image-viewer-svc
+  name: image-viewer-svc
+  namespace: yolo
+spec:
+  externalName: image-viewer-svc
+  ports:
+  - name: http-port-tcp
+    protocol: TCP
+    port: 6901
+    targetPort: 6901
+    nodePort: 32001
+  - name: vnc-port-tcp
+    protocol: TCP
+    port: 5901
+    targetPort: 5901
+    nodePort: 32002
+  selector:
+    name: image-viewer
+  type: NodePort

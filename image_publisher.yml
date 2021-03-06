@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: image-publisher
+  name: image-publisher
+  namespace: yolo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: image-publisher
+  template:
+    metadata:
+      labels:
+        name: image-publisher
+    spec:
+      initContainers:
+        - name: video-downloader
+          image: busybox:1.32
+          command:
+            - wget
+          args:
+            - https://www.dropbox.com/s/hb4fr4ixoslm3i0/video.mp4?dl=1
+            - -O
+            - /video/video.mp4
+          volumeMounts:
+            - mountPath: /video/
+              name: video
+      containers:
+        - name: image-publisher
+          image: mariogrdn/image_publisher
+          env:
+            - name: VIDEO_PATH
+              value: /video/video.mp4
+            - name: DISCOVERY_SERVER_NAME
+              value: server-service.yolo
+            - name: ROS_DOMAIN_ID
+              value: "42"
+          volumeMounts:
+            - mountPath: /video/
+              name: video
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: NotIn
+                values:
+                - agent
+      volumes:
+        - name: video

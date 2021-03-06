@@ -1,0 +1,37 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    name: server
+  name: server
+  namespace: yolo  
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      name: server
+  template: 
+    metadata:  
+      labels: 
+        name: server
+    spec: 
+      containers: 
+        - 
+          env: 
+            - 
+              name: ROS_DOMAIN_ID
+              value: "42"
+          image: "mariogrdn/discovery-server-df:latest"
+          imagePullPolicy: Always
+          name: server
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: NotIn
+                values:
+                - agent
+      restartPolicy: Always
