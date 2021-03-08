@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 # The environment variable indicating the path to the FastRTPS configuration
 export FASTRTPS_DEFAULT_PROFILES_FILE=/fastRTPS_profile/fastRTPS_profile_ds_talker.xml
@@ -12,7 +12,8 @@ fi
 sed -i "s/__DISCOVERY_SERVER_IP__/${DISCOVERY_SERVER_IP}/" ${FASTRTPS_DEFAULT_PROFILES_FILE}
 
 # Source the ROS2 configuration file
-. ./install/setup.bash
+. ./image_pipeline/install/setup.bash
 
 # Run the image publisher, replacing the current process to get signals
+ 
 exec ros2 run image_view image_view image:=/darknet_ros/detection_image

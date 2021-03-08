@@ -55,7 +55,7 @@ RUN sed --in-place --expression \
       /ros_entrypoint.sh
 RUN mkdir /fastRTPS_profile
 COPY fastRTPS_profile_ds_listener.xml /fastRTPS_profile
-COPY view_entrypoint.sh ./
-RUN chmod +x ./view_entrypoint.sh
+COPY yolo_entrypoint.sh ./
+RUN chmod +x ./yolo_entrypoint.sh
 
-ENTRYPOINT ./view_entrypoint.sh
+ENTRYPOINT ./yolo_entrypoint.sh

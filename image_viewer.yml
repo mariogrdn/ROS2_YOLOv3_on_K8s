@@ -20,6 +20,7 @@ spec:
       containers: 
         - 
           name: image-viewer
+          env:
             - 
               name: ROS_DOMAIN_ID
               value: "42"

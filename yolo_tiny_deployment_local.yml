@@ -30,6 +30,7 @@ spec:
               name: YOLO_SERVICE_NAME
               value: yolo-service.yolo
           image: mariogrdn/minimal_yolo_tiny:single
+          imagePullPolicy: Always 
       restartPolicy: Always
       affinity:
         nodeAffinity:
