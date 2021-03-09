@@ -28,15 +28,23 @@ spec:
               mountPath: /kube/
               name: kubeconfig
       - name: operator
-        image: mariogrdn/network_operator
-        imagePullPolicy: Always
+        image: mariogrdn/network_operator:def
         env:
+          - name: NET_CARD
+            value: network_card_name
           - name: res_namespace
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-      nodeSelector:
-        name: local
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: NotIn
+                values:
+                - agent
       volumes: 
         - 
           configMap:

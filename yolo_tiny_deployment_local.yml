@@ -29,8 +29,10 @@ spec:
             -
               name: YOLO_SERVICE_NAME
               value: yolo-service.yolo
-          image: mariogrdn/minimal_yolo_tiny:single
-          imagePullPolicy: Always 
+            -
+              name: FASTRTPS_DEFAULT_PROFILES_FILE
+              value: /fastRTPS_profile/fastRTPS_profile_ds_listener.xml
+          image: mariogrdn/minimal_yolo_tiny:def
       restartPolicy: Always
       affinity:
         nodeAffinity:

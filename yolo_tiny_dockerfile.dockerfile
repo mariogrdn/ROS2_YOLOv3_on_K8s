@@ -10,6 +10,8 @@ WORKDIR $OVERLAY_WS/src
 RUN apt-get update && apt-get install -y wget \
  && git clone --single-branch --recursive --branch foxy https://github.com/mariogrdn/darknet_ros_tiny.git \ 
  && cd ./darknet_ros_tiny \
+ && sed -i "s/OPENCV=0/OPENCV=1/g" ./darknet/Makefile \
+ && sed -i "s/OPENMP=0/OPENMP=1/g" ./darknet/Makefile \
  && cd ./darknet_ros/yolo_network_config \
  && mkdir weights && cd ./weights \
  && wget https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/Yolo-Fastest/VOC/yolo-fastest.weights

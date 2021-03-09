@@ -32,7 +32,10 @@ spec:
             -
               name: YOLO_SERVICE_IP
               value: 0.0.0.0
-          image: mariogrdn/minimal_yolo_tiny:single
+            -
+              name: FASTRTPS_DEFAULT_PROFILES_FILE
+              value: /fastRTPS_profile/fastRTPS_profile_ds_listener.xml  
+          image: mariogrdn/minimal_yolo_tiny:def
       restartPolicy: Always
       affinity:
         nodeAffinity:

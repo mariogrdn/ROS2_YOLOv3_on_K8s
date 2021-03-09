@@ -18,12 +18,7 @@ spec:
     spec: 
       containers: 
         - 
-          env: 
-            - 
-              name: ROS_DOMAIN_ID
-              value: "42"
-          image: "mariogrdn/discovery-server-df:latest"
-          imagePullPolicy: Always
+          image: "mariogrdn/discovery-server-df:def"
           name: server
       affinity:
         nodeAffinity:

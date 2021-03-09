@@ -5,6 +5,10 @@ ENV REFRESHED_AT 2018-03-18
 USER 0
 
 # Install necessary software
+RUN mkdir /fastRTPS_profile
+COPY fastRTPS_profile_ds_talker.xml /fastRTPS_profile
+COPY view_entrypoint.sh ./
+RUN chmod +x ./view_entrypoint.sh
 
 RUN apt-get update && apt-get install -y --no-install-recommends locales \
 && locale-gen en_US en_US.UTF-8 \
@@ -27,10 +31,7 @@ make \
 g++ \
 && pip3 install -U rosdep && rosdep init && rosdep fix-permissions && rosdep update --rosdistro foxy && rosdep install --rosdistro foxy -y --from-path . \
 && . /opt/ros/foxy/setup.sh && colcon build \
-&& mkdir /fastRTPS_profile
-COPY fastRTPS_profile_ds_talker.xml /fastRTPS_profile
-COPY view_entrypoint.sh ./
-RUN chmod +x ./view_entrypoint.sh
+&& . ./install/setup.sh
 
-#ENTRYPOINT ./view_entrypoint.sh
-#ENTRYPOINT /bin/bash
+
+

@@ -30,7 +30,7 @@ spec:
               name: video
       containers:
         - name: image-publisher
-          image: mariogrdn/image_publisher
+          image: mariogrdn/image_publisher:def
           env:
             - name: VIDEO_PATH
               value: /video/video.mp4
@@ -38,6 +38,8 @@ spec:
               value: server-service.yolo
             - name: ROS_DOMAIN_ID
               value: "42"
+            - name: FASTRTPS_DEFAULT_PROFILES_FILE
+              value: /fastRTPS_profile/fastRTPS_profile_ds_talker.xml
           volumeMounts:
             - mountPath: /video/
               name: video

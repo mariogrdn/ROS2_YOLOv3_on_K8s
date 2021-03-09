@@ -57,6 +57,7 @@ RUN chmod +x /discovery_entrypoint.sh \
 
 #
 #Run the server
-
 ENTRYPOINT ./discovery_entrypoint.sh
+
+ENTRYPOINT /discovery_entrypoint.sh
 
