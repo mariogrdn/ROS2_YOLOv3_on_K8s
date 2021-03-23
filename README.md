@@ -9,5 +9,5 @@ All the images are already available on Docker Hub, but if the necessity arises 
 
 # Prerequisites
 
-Two running Kubernetes clusters federated by means of Liqo (doc.liqo.io).
-In alternative, a single cluster can be used, therefore getting rid of the necessity of federating the clusters, but this requires to change the nodeAffinity into 
+Two running Kubernetes clusters federated by means of Liqo (doc.liqo.io). This work has been tested with two K3s clusters running onto two separate machines in the same LAN and with two Kind clusters running on the same machine.
+In alternative, a single cluster can be used, therefore getting rid of the necessity of federating the clusters, but this requires to change the nodeAffinity into yolo_tiny_deployment_remote, in order to allow Kubernetes to properly schedule it.
