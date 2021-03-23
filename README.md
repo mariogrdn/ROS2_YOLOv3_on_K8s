@@ -4,6 +4,7 @@ In this repository is presented a ROS2 system (running on top of Kubernetes) exe
 The ROS2 version of YOLOv3 used in the respective Docker images can be found at https://github.com/mariogrdn/darknet_ros_tiny.
 The Dockerfile and the code related to the operator is available at https://github.com/mariogrdn/network_operator.
 The base noVNC Docker image that has been used for the image_viewer is available at https://github.com/ConSol/docker-headless-vnc-container.
+The source code of the Discovery Server can be found at https://github.com/mariogrdn/Discovery-Server.
 
 All the images are already available on Docker Hub, but if the necessity arises to build them anew, the Dockerfiles are provided. If that is the case, it is important to remember to edit the YAML files in order to make them use the correct image.
 
