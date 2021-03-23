@@ -16,7 +16,7 @@ In alternative, a single cluster can be used, therefore getting rid of the neces
 
 # How To Use
 
-Before deploying the resources, it is necessary to customize the operator and the remote YOLO yaml. In the former we need to set the environment variable "NETCARD" value to the name of the wireless card available on the host (if there is none, the operator will not work, therefore must not be deployed), in the latter we need to manually set the environment variable "YOLO_SERVICE_IP" to the IP of the "yolo_service" Kubernetes service.
+Before deploying the resources, it is necessary to customize the operator and the remote YOLO yaml. In the former we need to set the environment variable "NETCARD" to the name of the wireless card available on the host (if there is none, the operator will not work, therefore must not be deployed), in the latter we need to manually set the environment variable "YOLO_SERVICE_IP" to the IP of the "yolo_service" Kubernetes service.
 In particular:
   - In case of federated clusters, it is important that this IP corresponds to the IP of the service running in the local cluster (the one hosting the image publisher, the image viewer, the discovery server and the YOLO local node).
   - In case it is deployed onto a single cluster, the "YOLO_SERVICE_IP" environment variable can be commented out in the YAML file.
