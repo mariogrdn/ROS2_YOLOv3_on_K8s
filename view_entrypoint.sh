@@ -3,7 +3,7 @@
 set -eo pipefail
 
 # The environment variable indicating the path to the FastRTPS configuration
-export FASTRTPS_DEFAULT_PROFILES_FILE=/fastRTPS_profile/fastRTPS_profile_ds_talker.xml
+export FASTRTPS_DEFAULT_PROFILES_FILE=/fastRTPS_profile/fastRTPS_profile_ds_image.xml
 
 # Grab the IP of the discovery server (if not provided) and fill the configuration
 if [ -z "${DISCOVERY_SERVER_IP}" ]; then

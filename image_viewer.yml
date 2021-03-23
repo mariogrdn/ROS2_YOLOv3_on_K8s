@@ -29,7 +29,7 @@ spec:
               value: server-service.yolo  
             -
               name: FASTRTPS_DEFAULT_PROFILES_FILE
-              value: /fastRTPS_profile/fastRTPS_profile_ds_talker.xml
+              value: /fastRTPS_profile/fastRTPS_profile_ds_image.xml
           image: mariogrdn/image_viewer:def
           imagePullPolicy: Always
           livenessProbe:

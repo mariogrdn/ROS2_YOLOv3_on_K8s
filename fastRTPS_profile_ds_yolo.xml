@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles>
+	<participant profile_name="UDP talker" is_default_profile="true" name="talker">
+	  <rtps>
+		<builtin>
+			<discovery_config>
+				<discoveryProtocol>CLIENT</discoveryProtocol>
+				<discoveryServersList>
+					<RemoteServer prefix="4D.49.47.55.45.4c.5f.42.41.52.52.4f">
+						<metatrafficUnicastLocatorList>
+							<locator>
+								<udpv4>
+									<address>__DISCOVERY_SERVER_IP__</address>
+									<port>6000</port>
+								</udpv4>
+							</locator>
+						</metatrafficUnicastLocatorList>
+					</RemoteServer>
+				</discoveryServersList>
+			</discovery_config>
+		</builtin>
+	  </rtps>
+	</participant>
+</profiles>

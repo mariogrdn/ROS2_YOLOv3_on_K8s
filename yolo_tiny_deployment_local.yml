@@ -31,7 +31,7 @@ spec:
               value: yolo-service.yolo
             -
               name: FASTRTPS_DEFAULT_PROFILES_FILE
-              value: /fastRTPS_profile/fastRTPS_profile_ds_listener.xml
+              value: /fastRTPS_profile/fastRTPS_profile_ds_yolo.xml
           image: mariogrdn/minimal_yolo_tiny:def
       restartPolicy: Always
       affinity:

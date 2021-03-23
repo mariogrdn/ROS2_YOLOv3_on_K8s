@@ -56,7 +56,7 @@ RUN sed --in-place --expression \
       '$isource "$OVERLAY_WS/install/setup.bash"' \
       /ros_entrypoint.sh
 RUN mkdir /fastRTPS_profile
-COPY fastRTPS_profile_ds_listener.xml /fastRTPS_profile
+COPY fastRTPS_profile_ds_yolo.xml /fastRTPS_profile
 COPY yolo_entrypoint.sh ./
 RUN chmod +x ./yolo_entrypoint.sh
 

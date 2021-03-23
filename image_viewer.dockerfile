@@ -6,7 +6,7 @@ USER 0
 
 # Install necessary software
 RUN mkdir /fastRTPS_profile
-COPY fastRTPS_profile_ds_talker.xml /fastRTPS_profile
+COPY fastRTPS_profile_ds_image.xml /fastRTPS_profile
 COPY view_entrypoint.sh ./
 RUN chmod +x ./view_entrypoint.sh
 
